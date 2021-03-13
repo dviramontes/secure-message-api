@@ -1,0 +1,39 @@
+body {
+  background-color: #282c34;
+  color: white;
+}
+
+.app {
+}
+
+.container {
+  margin: 3em;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100vh;
+}
+
+@media only screen and (min-width: 330px) {
+  .container {
+    margin: auto;
+  }
+}
+
+h4 {
+  color: #61dafb;
+}
+
+a {
+  background-color: #282c34;
+  color: #61dafb;
+}
+
+pre {
+  color: whitesmoke;
+  border: 1px solid #61dafb;
+}
+
+.section {
+  padding-top: 2em;
+}
