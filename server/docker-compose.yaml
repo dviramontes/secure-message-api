@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  nats:
+    container_name: "secure-message-nats"
+    networks:
+      - secure_message_network
+    image: nats:latest
+    restart: always
+    ports:
+      - 4222:4222
+  resgate:
+    container_name: "secure-message-resgate"
+    depends_on:
+      - nats
+    networks:
+      - secure_message_network
+    image: resgateio/resgate
+    restart: always
+    command: ["--nats", "nats://nats:4222"]
+    ports:
+      - 8080:8080
+
+networks:
+  secure_message_network:
