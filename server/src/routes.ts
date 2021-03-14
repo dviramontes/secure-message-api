@@ -11,4 +11,3 @@ export const api = express.Router();
 api.post("/message", (req: Request, res: Response) => {
   return res.send("message");
 });
-
