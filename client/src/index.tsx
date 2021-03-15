@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+const { default: resClient } = require("resclient");
+
+const client = new resClient("ws://localhost:8080");
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App client={client} />
   </React.StrictMode>,
   // @ts-ignore
   document.getElementById("root")

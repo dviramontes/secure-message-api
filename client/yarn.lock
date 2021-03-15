@@ -1740,6 +1740,11 @@
   "resolved" "https://registry.npmjs.org/@types/classnames/-/classnames-2.2.11.tgz"
   "version" "2.2.11"
 
+"@types/crypto-js@^4.0.1":
+  "integrity" "sha512-6+OPzqhKX/cx5xh+yO8Cqg3u3alrkhoxhE5ZOdSEv0DOzJ13lwJ6laqGU0Kv6+XDMFmlnGId04LtY22PsFLQUw=="
+  "resolved" "https://registry.npmjs.org/@types/crypto-js/-/crypto-js-4.0.1.tgz"
+  "version" "4.0.1"
+
 "@types/eslint@^7.2.6":
   "integrity" "sha512-I+1sYH+NPQ3/tVqCeUSBwTE/0heyvtXqpIopUUArlBm0Kpocb8FbMa3AZ/ASKIFpN3rnEx932TTXDbt9OXsNDw=="
   "resolved" "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.6.tgz"
@@ -1819,6 +1824,11 @@
   "integrity" "sha1-7ihweulOEdK4J7y+UnC86n8+ce4="
   "resolved" "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz"
   "version" "0.0.29"
+
+"@types/lodash@^4.14.168":
+  "integrity" "sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q=="
+  "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.168.tgz"
+  "version" "4.14.168"
 
 "@types/minimatch@*":
   "integrity" "sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA=="
@@ -3813,6 +3823,11 @@
     "public-encrypt" "^4.0.0"
     "randombytes" "^2.0.0"
     "randomfill" "^1.0.3"
+
+"crypto-js@^4.0.0":
+  "integrity" "sha512-bzHZN8Pn+gS7DQA6n+iUmBfl0hO5DJq++QP3U6uTucDtk/0iGpXd/Gg7CGR0p8tJhofJyaKoWBuJI4eAO00BBg=="
+  "resolved" "https://registry.npmjs.org/crypto-js/-/crypto-js-4.0.0.tgz"
+  "version" "4.0.0"
 
 "crypto-random-string@^1.0.0":
   "integrity" "sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4="
@@ -7261,7 +7276,7 @@
   "resolved" "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
   "version" "4.5.0"
 
-"lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.19", "lodash@^4.17.20", "lodash@^4.17.5", "lodash@>=3.5 <5":
+"lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.19", "lodash@^4.17.20", "lodash@^4.17.21", "lodash@^4.17.5", "lodash@>=3.5 <5":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
@@ -7604,6 +7619,16 @@
   "integrity" "sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw=="
   "resolved" "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz"
   "version" "1.0.4"
+
+"modapp-eventbus@^1.7.0":
+  "integrity" "sha512-mlsdgnnhek/zfe92DGhztwMlKYYZ+np+m5E1/GseXNPfrqTPVQBwZ8vhCsPc7T1qLB/Wh6TLGMfZjM2yChniRA=="
+  "resolved" "https://registry.npmjs.org/modapp-eventbus/-/modapp-eventbus-1.7.0.tgz"
+  "version" "1.7.0"
+
+"modapp-utils@^1.7.0":
+  "integrity" "sha512-o892G9Zm/NVTOLnfDxq7DhoAatnxPF5s/J8c9GM7Mp2ptTYx0zsQasBMHh0RoNdAcMpx5eCEWwdxTUpTpWu0tA=="
+  "resolved" "https://registry.npmjs.org/modapp-utils/-/modapp-utils-1.7.0.tgz"
+  "version" "1.7.0"
 
 "move-concurrently@^1.0.1":
   "integrity" "sha1-viwAX9oy4LKa8fBdfEszIUxwH5I="
@@ -9809,6 +9834,14 @@
   "integrity" "sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8="
   "resolved" "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz"
   "version" "1.0.0"
+
+"resclient@^2.2.1":
+  "integrity" "sha512-YwnSEylEKvZ2P/wW1eR/Ez5OmENhP25MydhEI2XShTH44eJJKgTuJ4tSzZ6H6D74QEwn1UiVmtocRIMbgF9Kiw=="
+  "resolved" "https://registry.npmjs.org/resclient/-/resclient-2.2.1.tgz"
+  "version" "2.2.1"
+  dependencies:
+    "modapp-eventbus" "^1.7.0"
+    "modapp-utils" "^1.7.0"
 
 "resolve-cwd@^2.0.0":
   "integrity" "sha1-AKn3OHVW4nA46uIyyqNypqWbZlo="

@@ -18,18 +18,18 @@ app.use("/api", api);
 const nats = natsConnect();
 
 // Access listener for all library resources. Everyone gets full access
-nats.subscribe("access.example.>", (req: any, reply: any) => {
+nats.subscribe("access.messages.>", (req: any, reply: any) => {
   nats.publish(reply, accessGranted);
 });
 
-nats.subscribe("get.example.model", (reply: any) => {
+nats.subscribe("get.messages.model", (reply: any) => {
   nats.publish(
     reply,
     JSON.stringify({ result: { model: { message: "Hello, World!" } } })
   );
 });
 
-nats.subscribe("access.example.model", (req: any, reply: any) => {
+nats.subscribe("access.messages.model", (req: any, reply: any) => {
   nats.publish(reply, JSON.stringify({ result: { get: true } }));
 });
 
