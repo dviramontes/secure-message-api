@@ -17,23 +17,41 @@ app.use("/api", api);
 
 const nats = natsConnect();
 
-// Access listener for all library resources. Everyone gets full access
-nats.subscribe("access.messages.>", (req: any, reply: any) => {
-  nats.publish(reply, accessGranted);
+const mymodel = { message: "Hello NATS" };
+
+// Listen to RES get requests over NATS
+nats.subscribe('get.models.mymodel', function(req:any, reply:any) {
+  nats.publish(reply, JSON.stringify({ result: { model: mymodel }}));
 });
 
-nats.subscribe("get.messages.model", (reply: any) => {
-  nats.publish(
-    reply,
-    JSON.stringify({ result: { model: { message: "Hello, World!" } } })
-  );
+nats.subscribe("auth.sessions.login", function (req: any, reply: any) {
+  const { cid, params, token } = JSON.parse(req);
+  console.log({cid});
+  console.log({params});
+  console.log({token});
+  // If client already has an access token, respond with an error
+  // if (token) {
+  //   nats.publish(reply, JSON.stringify({ error:
+  //       { code: 'session.alreadyLoggedIn', message: "Already logged in" }
+  //   }));
+  //   return;
+  // }
+  nats.publish(reply, JSON.stringify({ result: { data: [1234] }}));
+})
+
+nats.subscribe('access.models.>', function(req: any, reply:any) {
+  let { token } = JSON.parse(req);
+  console.log({token});
+  nats.publish(reply, JSON.stringify({ result: {
+      get: true // Or false, if the token doesn't provide access
+    }}));
 });
 
-nats.subscribe("access.messages.model", (req: any, reply: any) => {
-  nats.publish(reply, JSON.stringify({ result: { get: true } }));
-});
-
-nats.publish("system.reset", JSON.stringify({ resources: ["example.>"] }));
+// Updating the model
+mymodel.message = "Hello NATS+Resgate";
+nats.publish('event.models.mymodel.change', JSON.stringify({
+  values: { message: mymodel.message }
+}));
 
 app.listen(PORT);
 

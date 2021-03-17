@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from "react";
 import { Form, Button } from "react-bootstrap";
 import { v4 as uuid4 } from "uuid";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { IApp, IClipboard, ICreds } from "./types";
 import { AES, enc } from "crypto-js";
-import { times, random } from "lodash";
+import { times, random, isEmpty } from "lodash";
 import "./App.css";
 
 const generatePassword = (length: number): string => {
@@ -62,29 +66,36 @@ const AccountButtons = () => {
 function App(props: IApp) {
   const [username, setUsername] = useState(uuid4());
   const [password, setPassword] = useState(generatePassword(12));
+
+  const [recipient, setRecipient] = useState("");
   const [message, setMessage] = useState("");
+  const [inbox, setInbox] = useState([]);
 
   useEffect(() => {
-    console.log("got here 0");
-
-    props.client.get("messages.model").then((model: any) => {
-      console.log(model.message);
-
-      let onChange = () => {
-        console.log("New message: " + model.message);
-      };
-
-      // Listen to changes for 5 seconds, eventually unsubscribing
-      model.on("change", onChange);
-      // setTimeout(() => {
-      //   model.off("change", onChange);
-      // }, 5000);
+    props.client.authenticate("sessions", "login", { username: "123", password: "123" }).then((res: any) => {
+      console.log({res});
+    }).catch((error: any) => {
+      console.log({error});
+    })
+    console.log('fetching inbox...');
+    props.client.get('models.mymodel').then((model: any) => {
+      console.log(model.message); // Hello NATS
     });
-  }, []);
+  }, [inbox]);
 
-  useEffect(() => {
-    window.addEventListener("leave", () => alert("leaving"));
-  });
+  // TODO: fix event handler
+  window.addEventListener("beforeunload", () => alert("leaving"));
+
+  const messageValidate = (): boolean => isEmpty(recipient) || isEmpty(message);
+
+  const handleMessageSend = (e: SyntheticEvent) => {
+    e.preventDefault();
+    const encrypted = encrypt(message, password);
+    console.log("broadcast message to sender...");
+    console.log({encrypted});
+    // if event sent success
+    // setMessage("");
+  };
 
   return (
     <div className="app">
@@ -110,7 +121,11 @@ function App(props: IApp) {
             <Form>
               <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Recipient</Form.Label>
-                <Form.Control type="text" placeholder="user-uuid" />
+                <Form.Control
+                  type="text"
+                  placeholder="user-uuid"
+                  onChange={(e) => setRecipient(e.target.value)}
+                />
               </Form.Group>
               <p>Message</p>
               <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -123,7 +138,12 @@ function App(props: IApp) {
                   }}
                 />
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button
+                disabled={messageValidate()}
+                variant="info"
+                type="button"
+                onClick={handleMessageSend}
+              >
                 Send
               </Button>
             </Form>
